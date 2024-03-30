@@ -1,7 +1,7 @@
 import {css, styled} from "styled-components";
 
 type InvoiceItemStatusProps = {
-    status?: string;
+    status?: "paid" | "pending" | "draft";
     $variant?: string;
 }
 

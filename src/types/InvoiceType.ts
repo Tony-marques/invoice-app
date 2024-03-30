@@ -6,7 +6,7 @@ export type InvoiceType = {
     paymentTerms: number;
     clientName: string;
     clientEmail: string;
-    status?: string;
+    status?: "paid" | "pending" | "draft";
 
     senderAddress: {
         street: string;
