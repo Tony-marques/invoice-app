@@ -5,7 +5,7 @@ import InvoiceItemStatus
 
 type InvoiceItemProps = {
     invoice: InvoiceType,
-    handleOnClick: (id: string |undefined) => void;
+    handleOnClick: (id: string) => void;
 }
 
 const InvoiceItem = ({
@@ -13,7 +13,7 @@ const InvoiceItem = ({
     handleOnClick
 }: InvoiceItemProps) => {
     return (
-        <InvoiceItemStyled onClick={() => handleOnClick(invoice.id)}>
+        <InvoiceItemStyled onClick={() => handleOnClick(invoice?.id as string)}>
             <span className="id">#<span>{invoice.id}</span></span>
             <span className="due-date">Due {invoice.paymentDue}</span>
             <span className="client-name">{invoice.clientName}</span>

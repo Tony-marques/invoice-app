@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 const InvoiceList = () => {
     const navigate = useNavigate();
     // const {invoices, selectedFilter} = useInvoiceContext();
-const {filteredInvoices} = useInvoiceContext()
+const {invoices} = useInvoiceContext()
     // const filteredInvoices = invoices.filter((invoice) => {
     //     if(selectedFilter !== "") {
     //         return invoice.status === selectedFilter;
@@ -22,7 +22,7 @@ const {filteredInvoices} = useInvoiceContext()
 
     return (
         <InvoiceListStyled>
-            {filteredInvoices?.map((invoice) => (
+            {invoices?.map((invoice) => (
                 <InvoiceItem
                     handleOnClick={handleOnClick}
                     invoice={invoice}

@@ -2,6 +2,7 @@ import {css, styled} from "styled-components";
 
 type ButtonProps = {
     title: "Edit" | "Delete" | "Mark as Paid";
+    onClick?: () => void;
     $variant: "edit" | "remove" | "paid";
 }
 
@@ -9,9 +10,13 @@ type StyleProps = {
     $variant: "edit" | "remove" | "paid";
 }
 
-const Button = ({title, $variant}: ButtonProps) => {
+const Button = ({
+    title,
+    onClick,
+    $variant
+}: ButtonProps) => {
     return (
-        <ButtonStyled $variant={$variant}>
+        <ButtonStyled $variant={$variant} onClick={onClick}>
             {title}
         </ButtonStyled>
     );

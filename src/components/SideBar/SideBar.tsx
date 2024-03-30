@@ -18,8 +18,8 @@ const SideBarStyled = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 100vh; //height: 800px;
-    width: 103px;
+    height: 100vh; 
+    min-width: 103px;
     background-color: #373B53;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -27,6 +27,4 @@ const SideBarStyled = styled.div`
     position: sticky;
     top: 0;
     left: 0;
-    //flex-grow: grow;
-    //flex: 1;
 `;

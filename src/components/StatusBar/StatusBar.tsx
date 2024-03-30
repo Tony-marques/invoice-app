@@ -3,12 +3,26 @@ import InvoiceItemStatus
     from "../../InvoiceItem/components/InvoiceItemStatus/InvoiceItemStatus.tsx";
 import Button from "../ui/Button/Button.tsx";
 import {InvoiceType} from "../../types/InvoiceType.ts";
+import {useNavigate} from "react-router-dom";
+import {
+    useInvoiceContext
+} from "../../contexts/InvoiceContext.tsx";
 
 type StatusBarProps = {
     invoice?: InvoiceType
 }
 
 const StatusBar = ({invoice}: StatusBarProps) => {
+
+    const {deleteInvoice} = useInvoiceContext()
+    const navigate = useNavigate()
+
+    const handleDelete = () => {
+        // console.log(invoices);
+        deleteInvoice(invoice?.id as string)
+        navigate("/")
+    }
+
     return (
         <StatusBarStyled>
             <div className="status-container">
@@ -26,6 +40,7 @@ const StatusBar = ({invoice}: StatusBarProps) => {
                 <Button
                     title="Delete"
                     $variant="remove"
+                    onClick={handleDelete}
                 />
                 <Button
                     title="Mark as Paid"
