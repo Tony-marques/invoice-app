@@ -1,5 +1,9 @@
 import {styled} from "styled-components";
 import {InvoiceType} from "../../types/InvoiceType.ts";
+import {
+    formatDate,
+    formatPrice
+} from "../../utils/functions.ts";
 
 type InvoiceInformationsProps = {
     invoice?: InvoiceType
@@ -23,11 +27,11 @@ const InvoiceInformations = ({invoice}: InvoiceInformationsProps) => {
             <div className="payment">
                 <div className="invoice-date">
                     <span>Invoice Date</span>
-                    <span>{invoice?.createdAt}</span>
+                    <span>{formatDate(invoice?.createdAt,"en-EN")}</span>
                 </div>
                 <div className="payment-due">
                     <span>Payment Due</span>
-                    <span>{invoice?.paymentDue}</span>
+                    <span>{formatDate(invoice?.paymentDue,"en-EN")}</span>
                 </div>
             </div>
 
@@ -65,15 +69,15 @@ const InvoiceInformations = ({invoice}: InvoiceInformationsProps) => {
                             <div className="item">
                                 <span className="name">{item.name}</span>
                                 <span className="quantity">{item.quantity}</span>
-                                <span className="price">£ {item.price}</span>
-                                <span className="total">£ {item.total}</span>
+                                <span className="price">£ {formatPrice(item.price, 2)}</span>
+                                <span className="total">£ {formatPrice(item.total, 2)}</span>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className="amount">
                     <span>Amount Due</span>
-                    <span>£ {invoice?.total}</span>
+                    <span>£ {formatPrice(invoice?.total, 2)}</span>
                 </div>
             </div>
         </InvoiceInformationsStyled>
