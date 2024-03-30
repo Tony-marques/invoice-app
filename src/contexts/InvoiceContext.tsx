@@ -21,14 +21,16 @@ export const InvoiceContextProvider = ({children}: InvoiceContextProviderProps) 
         invoices,
         addInvoice,
         selectedFilter,
-        choiceInvoice
+        choiceInvoice,
+        filteredInvoices
     } = useInvoice();
 
     const invoiceValue = {
         invoices,
         addInvoice,
         selectedFilter,
-        choiceInvoice
+        choiceInvoice,
+        filteredInvoices
     };
 
     return <InvoiceContext.Provider value={invoiceValue}>

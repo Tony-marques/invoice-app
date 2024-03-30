@@ -7,15 +7,15 @@ import {useNavigate} from "react-router-dom";
 
 const InvoiceList = () => {
     const navigate = useNavigate();
-    const {invoices, selectedFilter} = useInvoiceContext();
-
-    const filteredInvoices = invoices.filter((invoice) => {
-        if(selectedFilter !== "") {
-            return invoice.status === selectedFilter;
-
-        }
-        return invoice;
-    });
+    // const {invoices, selectedFilter} = useInvoiceContext();
+const {filteredInvoices} = useInvoiceContext()
+    // const filteredInvoices = invoices.filter((invoice) => {
+    //     if(selectedFilter !== "") {
+    //         return invoice.status === selectedFilter;
+    //
+    //     }
+    //     return invoice;
+    // });
     const handleOnClick = (id: string) => {
         navigate(`/${id}`);
     };

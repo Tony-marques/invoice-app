@@ -17,26 +17,27 @@ const FilterBar = () => {
     const [showFilterList, setShowFilterList] = useState(false);
     const {
         selectedFilter,
-        choiceInvoice
+        choiceInvoice,
+        invoices
     } = useInvoiceContext();
 
     useEffect(() => {
         document.body.addEventListener("click", () => {
-            setShowFilterList(false)
-        })
+            setShowFilterList(false);
+        });
     }, []);
 
-    const handleAddVoice = () => {
+    const handleAddInvoice = () => {
         showModal();
     };
 
     const handleClickFilter = (e: FormEvent<HTMLButtonElement>) => {
-        e.stopPropagation()
+        e.stopPropagation();
         setShowFilterList((prev) => !prev);
     };
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-        e.stopPropagation()
+        e.stopPropagation();
 
         if(selectedFilter !== "") {
             choiceInvoice("");
@@ -48,16 +49,14 @@ const FilterBar = () => {
         }
     };
 
-
-
     console.log(selectedFilter);
 
     return (
         <FilterBarStyled>
             <div className="filterBar-left">
                 <div className="title">Invoices</div>
-                <div className="total-invoices">There are 7
-                    total invoices
+                <div className="total-invoices">There
+                    are {invoices.length} total invoices
                 </div>
             </div>
             <div
@@ -75,7 +74,7 @@ const FilterBar = () => {
                 </button>
                 <button
                     className="add-invoice"
-                    onClick={handleAddVoice}
+                    onClick={handleAddInvoice}
                 >
                     <span className="icon">
                         <img
@@ -87,7 +86,10 @@ const FilterBar = () => {
                 </button>
 
                 {showFilterList &&
-                    <div className="filter-list">
+                    <div
+                        className="filter-list"
+                        onClick={(e: React.MouseEvent<HTMLDivElement>): void => e.stopPropagation()}
+                    >
                         <div className="input-group">
                             <input
                                 type="checkbox"
@@ -133,7 +135,6 @@ export default FilterBar;
 const FilterBarStyled = styled.div`
     display: flex;
     width: 730px;
-    display: flex;
     justify-content: space-between;
     margin-top: 77px;
 

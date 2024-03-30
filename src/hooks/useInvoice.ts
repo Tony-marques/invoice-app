@@ -15,10 +15,19 @@ export const useInvoice = () => {
         setSelectedFilter(value)
     }
 
+    const filteredInvoices = invoices.filter((invoice) => {
+        if(selectedFilter !== "") {
+            return invoice.status === selectedFilter;
+
+        }
+        return invoice;
+    });
+
     return {
         invoices,
         addInvoice,
         selectedFilter,
-        choiceInvoice
+        choiceInvoice,
+        filteredInvoices
     };
 };
