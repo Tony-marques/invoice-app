@@ -48,6 +48,34 @@ const InvoiceInformations = ({invoice}: InvoiceInformationsProps) => {
                     <div className="email">{invoice?.clientEmail}</div>
                 </div>
             </div>
+
+            <div className="items-container">
+                <div className="items-details">
+                    <div className="header">
+                        <div className="item-name">
+                            Item Name
+                        </div>
+                        <div className="quantity">QTY.</div>
+                        <div className="price">Price</div>
+                        <div className="total">Total</div>
+                    </div>
+
+                    <div className="items-container">
+                        {invoice?.items.map((item) => (
+                            <div className="item">
+                                <span className="name">{item.name}</span>
+                                <span className="quantity">{item.quantity}</span>
+                                <span className="price">£ {item.price}</span>
+                                <span className="total">£ {item.total}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="amount">
+                    <span>Amount Due</span>
+                    <span>£ {invoice?.total}</span>
+                </div>
+            </div>
         </InvoiceInformationsStyled>
     );
 };
@@ -177,6 +205,117 @@ const InvoiceInformationsStyled = styled.div`
                 color: #0C0E16;
                 font-weight: 700;
                 font-size: 15px;
+            }
+        }
+    }
+
+    .items-container {
+        width: 100%;
+
+        .items-details {
+            margin-top: 44px;
+            background-color: #F9FAFE;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            flex-basis: 100%;
+            //border: 1px solid red;
+            padding: 33px;
+            gap: 32px;
+
+            .header {
+                display: flex;
+                width: 100%;
+
+                .item-name {
+                    flex-basis: 40%;
+                    //border: 1px solid red;
+
+                }
+
+                .quantity,
+                .price,
+                .total {
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-basis: 20%;
+                    //border: 1px solid red;
+                }
+
+                .item-name,
+                .quantity,
+                .price,
+                .total {
+                    font-weight: 500;
+                    font-size: 13px;
+                    color: #7E88C3;
+                }
+            }
+
+            .items-container {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+
+                .item {
+                    //width: 100%;
+                    display: flex;
+
+                    .name {
+                        flex-basis: 40%;
+                        //border: 1px solid red;
+                    }
+
+                    .quantity,
+                    .price,
+                    .total {
+                        display: flex;
+                        justify-content: flex-end;
+                        flex-basis: 20%;
+                        //border: 1px solid red;
+                    }
+
+                    .name, .total, .price, .quantity {
+                        font-weight: 700;
+                        font-size: 15px;
+                    }
+
+                    .name, .total {
+                        color: #0C0E16;
+
+                    }
+
+                    .price, .quantity {
+                        color: #7E88C3;
+                    }
+                }
+
+            }
+        }
+
+        .amount {
+            padding: 32px;
+            background-color: #373B53;
+            color: white;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+
+            :nth-child(1) {
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+                font-weight: 500;
+            }
+
+            :nth-child(2) {
+                display: flex;
+                align-items: center;
+                font-size: 24px;
+                font-weight: 700;
             }
         }
     }
