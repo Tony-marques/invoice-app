@@ -18,7 +18,6 @@ export const useInvoice = () => {
     const filteredInvoices = invoices.filter((invoice) => {
         if(selectedFilter !== "") {
             return invoice.status === selectedFilter;
-
         }
         return invoice;
     });
