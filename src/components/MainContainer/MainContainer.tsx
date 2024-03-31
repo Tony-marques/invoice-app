@@ -7,7 +7,6 @@ const MainContainer = () => {
         <MainContainerStyled>
             <FilterBar/>
             <InvoiceList/>
-
         </MainContainerStyled>
     );
 };
@@ -15,14 +14,11 @@ const MainContainer = () => {
 export default MainContainer;
 
 const MainContainerStyled = styled.div`
-    border: 2px solid green;
-    height: 100%;
-    position: absolute;
+    //flex-grow: grow;
+    position: relative;
     display: flex;
     gap: 64px;
-    //justify-content: center;
     align-items: center;
     flex-direction: column;
-    
     width: 100%;
 `;

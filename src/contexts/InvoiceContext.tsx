@@ -10,7 +10,9 @@ type InvoiceContextType = {
     invoices: InvoiceType[],
     addInvoice: (newInvoice: InvoiceType) => void;
     selectedFilter: string;
-    choiceInvoice: (value: string) => void
+    choiceInvoice: (value: string) => void;
+    deleteInvoice: (invoice: string) => void;
+    changeStatusToPaid: (invoice: string) => void;
 }
 
 const InvoiceContext = createContext<InvoiceContextType | null>(null);
@@ -21,14 +23,18 @@ export const InvoiceContextProvider = ({children}: InvoiceContextProviderProps) 
         invoices,
         addInvoice,
         selectedFilter,
-        choiceInvoice
+        choiceInvoice,
+        deleteInvoice,
+        changeStatusToPaid
     } = useInvoice();
 
     const invoiceValue = {
         invoices,
         addInvoice,
         selectedFilter,
-        choiceInvoice
+        choiceInvoice,
+        deleteInvoice,
+        changeStatusToPaid
     };
 
     return <InvoiceContext.Provider value={invoiceValue}>
