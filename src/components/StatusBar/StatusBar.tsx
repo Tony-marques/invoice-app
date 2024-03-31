@@ -14,13 +14,16 @@ type StatusBarProps = {
 
 const StatusBar = ({invoice}: StatusBarProps) => {
 
-    const {deleteInvoice} = useInvoiceContext()
-    const navigate = useNavigate()
+    const {deleteInvoice, changeStatusToPaid} = useInvoiceContext();
+    const navigate = useNavigate();
 
     const handleDelete = () => {
-        // console.log(invoices);
-        deleteInvoice(invoice?.id as string)
-        navigate("/")
+        deleteInvoice(invoice?.id as string);
+        navigate("/");
+    };
+
+    const handlePaid = () => {
+        changeStatusToPaid(invoice?.id)
     }
 
     return (
@@ -42,10 +45,12 @@ const StatusBar = ({invoice}: StatusBarProps) => {
                     $variant="remove"
                     onClick={handleDelete}
                 />
-                <Button
+                {invoice?.status !== "paid" && <Button
                     title="Mark as Paid"
                     $variant="paid"
-                />
+                    onClick={handlePaid}
+                />}
+
             </div>
         </StatusBarStyled>
     );

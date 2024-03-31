@@ -1,10 +1,12 @@
 import {styled} from "styled-components";
 
-interface ItemProps {
-    name,
-    price,
-    quantity,
-    total
+type ItemProps = {
+    name: string;
+    price: number;
+    quantity: number;
+    total: number;
+    register: any;
+    index: number;
 }
 
 const Item = ({name, price, quantity, total, register, index}: ItemProps) => {

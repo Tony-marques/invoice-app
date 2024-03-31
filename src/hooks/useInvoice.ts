@@ -35,12 +35,21 @@ export const useInvoice = () => {
         return invoice;
     });
 
+    const changeStatusToPaid = (invoiceId: string ) => {
+        setInvoices((prev) => {
+            return prev.map((item) => item.id !== invoiceId ? item : {
+                ...item,
+                status: "paid"
+            });
+        });
+    };
+
     return {
-        // invoices,
         addInvoice,
         selectedFilter,
         choiceInvoice,
         invoices: filteredInvoices,
-        deleteInvoice
+        deleteInvoice,
+        changeStatusToPaid
     };
 };

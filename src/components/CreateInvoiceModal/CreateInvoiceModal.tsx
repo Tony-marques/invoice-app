@@ -2,7 +2,6 @@ import {styled} from "styled-components";
 import {
     useModalContext
 } from "../../contexts/ModalContext.tsx";
-import {createPortal} from "react-dom";
 import InputText from "../InputText/InputText.tsx";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {
@@ -15,26 +14,22 @@ import Item from "../Item/Item.tsx";
 const CreateInvoiceModal = () => {
     const {modalRef} = useModalContext();
     const {handleSubmit, reset, register} = useForm();
-    const {addInvoice, invoices} = useInvoiceContext();
+    const {addInvoice} = useInvoiceContext();
     const {showModal} = useModalContext();
     const [items, setItems] = useState([]);
 
     const handleOnSubmit: SubmitHandler<InvoiceType> = (data: InvoiceType) => {
-        const newData = {...data, items: data.items};
-        console.log(data);
-        // setItems((prev) => {
-        //     return [
-        //         ...prev,
-        //         {...data}
-        //     ]
-        // })
         addInvoice(data);
         reset();
         showModal();
     };
     console.log(items);
 
-    const addItemInput = (e) => {
+    const closeModal = () => {
+        showModal()
+    }
+
+    const addItemInput = () => {
         e.preventDefault();
         setItems((prev) => {
             return [
@@ -54,8 +49,9 @@ const CreateInvoiceModal = () => {
     return (
         <CreateInvoiceModalStyled
             ref={modalRef}
+            onClick={closeModal}
         >
-            <div>
+            <div onClick={(e) => e.stopPropagation()}>
                 <div className="title">New Invoice</div>
                 <div className="bill-from">Bill From</div>
                 <form method="POST">
@@ -189,24 +185,14 @@ const CreateInvoiceModal = () => {
 export default CreateInvoiceModal;
 
 const CreateInvoiceModalStyled = styled.dialog`
-    //width: calc(719px - 103px);
-    //margin-left: 103px;
-    //height: 100%;
-    //border: none;
-    //border-radius: 0 20px 20px 0;
-    //padding: 59px 56px;
-    //display: flex;
-    //flex-direction: column;
     width: calc(100% - 103px);
     position: fixed;
     top: 0;
     left: 103px;
     height: 100vh;
     min-height: 100vh;
-    //min-height: 100vh;
     border: none;
     display: none;
-    //padding: 59px 56px;
     flex-direction: column;
     background-color: #00000080;
 
@@ -227,17 +213,12 @@ const CreateInvoiceModalStyled = styled.dialog`
         width: 100%;
         flex-wrap: wrap;
         justify-content: space-between;
+
+        .bill-to{
+            display: block;
+            width: 100%;
+        }
     }
-
-
-    //&::backdrop {
-    //    background-color: #00000080;
-    //    margin-left: auto;
-    //    width: calc(100% - 103px);
-    //    height: 800px;
-    //    position: fixed;
-    //    display: flex;
-    //}
 
     .item-list {
         font-size: 18px;
