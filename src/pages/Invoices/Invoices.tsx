@@ -3,11 +3,9 @@ import MainContainer
     from "../../components/MainContainer/MainContainer.tsx";
 import CreateInvoiceModal
     from "../../components/CreateInvoiceModal/CreateInvoiceModal.tsx";
-import {useInvoice} from "../../hooks/useInvoice.ts";
 
 const Invoices = () => {
-    const {invoices} = useInvoice()
-    console.log(invoices);
+
     return (
         <InvoicesStyled>
             <CreateInvoiceModal/>

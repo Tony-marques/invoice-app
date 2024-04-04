@@ -8,3 +8,7 @@ body, button{
     font-family: "League Spartan", sans-serif;
     background-color: #F8F8FB;
 }
+
+body.dark{
+    background-color: #141625;
+}

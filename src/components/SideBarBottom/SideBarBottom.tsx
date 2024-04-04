@@ -1,12 +1,23 @@
 import {styled} from "styled-components";
+import {
+    useThemeContext
+} from "../../contexts/ThemeContext.tsx";
 
 const SideBarBottom = () => {
+
+    const { toggleTheme} = useThemeContext()
+
+    const handleToggleTheme = () => {
+        toggleTheme()
+    }
+
     return (
         <SideBarBottomStyled>
                 <img
                     className="moon"
                     src="/assets/icon-moon.svg"
                     alt=""
+                    onClick={handleToggleTheme}
                 />
                 <div className="separator"></div>
                 <img
@@ -29,6 +40,7 @@ const SideBarBottomStyled = styled.div`
         width: 20px;
         height: 20px;
         margin-bottom: 32px;
+        cursor: pointer;
     }
 
     .separator {
