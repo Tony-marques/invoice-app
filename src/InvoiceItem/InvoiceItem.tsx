@@ -21,12 +21,14 @@ const InvoiceItem = ({ invoice, handleOnClick }: InvoiceItemProps) => {
       theme={theme}
     >
       <span className="id">
-        #<span>{invoice.id}</span>
+        #<span>{invoice?.id}</span>
       </span>
-      <span className="due-date">Due {invoice.paymentDue}</span>
-      <span className="client-name">{invoice.clientName}</span>
-      <span className="price">£ {invoice.total?.toFixed(2)}</span>
-      <InvoiceItemStatus status={invoice.status} $variant={invoice.status} />
+      <span className="due-date">Due {invoice?.paymentDue ? invoice?.paymentDue : "xxxx-xx-xx"}</span>
+      <span className="client-name">{invoice?.clientName}</span>
+      <span className="price">
+        £ {invoice?.total ? invoice?.total?.toFixed(2) : Number(0)?.toFixed(2)}
+      </span>
+      <InvoiceItemStatus status={invoice?.status} $variant={invoice?.status} />
       <img src="/assets/icon-arrow-right.svg" alt="" />
     </InvoiceItemStyled>
   );

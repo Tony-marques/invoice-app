@@ -72,8 +72,8 @@ const InvoiceInformations = ({ invoice }: InvoiceInformationsProps) => {
               <div className="item" key={item.name}>
                 <span className="name">{item.name}</span>
                 <span className="quantity">{item.quantity}</span>
-                <span className="price">£ {formatPrice(item.price, 2)}</span>
-                <span className="total">£ {formatPrice(item.total, 2)}</span>
+                <span className="price">£ {formatPrice(Number(item.price), 2)}</span>
+                <span className="total">£ {formatPrice(item.price * item.quantity, 2)}</span>
               </div>
             ))}
           </div>

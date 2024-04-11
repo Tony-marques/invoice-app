@@ -29,7 +29,7 @@ const SideBarStyled = styled.div<SideBarStyled>`
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   overflow: hidden;
-  /* position: sticky; */
+  position: sticky;
   top: 0;
   left: 0;
 `;

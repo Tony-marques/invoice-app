@@ -17,7 +17,7 @@ const InvoiceDetails = () => {
     const navigate = useNavigate();
 
     const invoice = invoices.find((item: InvoiceType) => item.id === id);
-    console.log(invoice);
+    // console.log(invoice);
 
     const handleOnClick = () => {
         navigate("/");

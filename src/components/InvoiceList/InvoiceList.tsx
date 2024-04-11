@@ -27,7 +27,6 @@ const InvoiceList = () => {
 export default InvoiceList;
 
 const InvoiceListStyled = styled.div`
-  //border: 1px solid blue;
   display: flex;
   flex-direction: column;
   gap: 16px;

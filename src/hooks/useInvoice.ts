@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { InvoiceType } from "../types/InvoiceType.ts";
 import data from "../../data.json";
+import { InvoiceType } from "../types/InvoiceType.ts";
 import { getRandomId } from "../utils/functions.ts";
 
 export const useInvoice = () => {
@@ -17,6 +17,31 @@ export const useInvoice = () => {
       },
       ...invoicesCopy,
     ]);
+  };
+
+  const updateInvoice = (data: InvoiceType, invoiceToUpdate: InvoiceType) => {
+    const invoicesCopy = [...invoices];
+    const index = invoices.findIndex(
+      (invoice) => invoice.id === invoiceToUpdate.id
+    );
+
+    const totalPrice = data?.items.reduce((acc, curr) => {
+      return acc + curr.price * curr.quantity;
+    }, 0);
+
+    const updatedInvoice = {
+      ...invoicesCopy[index],
+      ...data,
+      total: totalPrice,
+      status:
+        invoicesCopy[index].status === "draft"
+          ? "pending"
+          : invoicesCopy[index].status,
+    };
+
+    invoicesCopy[index] = updatedInvoice;
+    setInvoices(invoicesCopy);
+
   };
 
   const choiceInvoice = (value: string) => {
@@ -51,12 +76,27 @@ export const useInvoice = () => {
     });
   };
 
+  const saveAsDraft = (invoice: InvoiceType) => {
+    const invoicesCopy = [...invoices];
+
+    setInvoices([
+      ...invoicesCopy,
+      {
+        ...invoice,
+        id: getRandomId(),
+        status: "draft",
+      },
+    ]);
+  };
+
   return {
     addInvoice,
+    updateInvoice,
     selectedFilter,
     choiceInvoice,
     invoices: filteredInvoices,
     deleteInvoice,
     changeStatusToPaid,
+    saveAsDraft,
   };
 };

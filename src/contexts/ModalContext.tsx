@@ -7,7 +7,6 @@ type ModalContextProviderProps = {
 
 type ModalContextType = {
   showModal: () => void;
-  showCreateInvoiceForm: boolean;
   modalRef: RefObject<HTMLDialogElement>;
 };
 
@@ -16,11 +15,10 @@ const ModalContext = createContext<ModalContextType | null>(null);
 export const ModalContextProvider = ({
   children,
 }: ModalContextProviderProps) => {
-  const { showModal, showCreateInvoiceForm, modalRef } = useModal();
+  const { showModal, modalRef } = useModal();
 
   const modalValues = {
     showModal,
-    showCreateInvoiceForm,
     modalRef,
   };
 

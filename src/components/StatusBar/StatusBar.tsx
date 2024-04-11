@@ -2,8 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import InvoiceItemStatus from "../../InvoiceItem/components/InvoiceItemStatus/InvoiceItemStatus.tsx";
 import { useInvoiceContext } from "../../contexts/InvoiceContext.tsx";
+import { useModalContext } from "../../contexts/ModalContext.tsx";
 import { useThemeContext } from "../../contexts/ThemeContext.tsx";
 import { InvoiceType } from "../../types/InvoiceType.ts";
+import EditInvoiceModal from "../EditInvoiceModal/EditInvoiceModal.tsx";
 import Button from "../ui/Button/Button.tsx";
 
 type StatusBarProps = {
@@ -16,6 +18,7 @@ type StatusBarStyle = {
 
 const StatusBar = ({ invoice }: StatusBarProps) => {
   const { deleteInvoice, changeStatusToPaid } = useInvoiceContext();
+  const { showModal } = useModalContext();
   const navigate = useNavigate();
   const { theme } = useThemeContext();
 
@@ -24,8 +27,12 @@ const StatusBar = ({ invoice }: StatusBarProps) => {
     navigate("/");
   };
 
+  const handleToggleModal = () => {
+    showModal();
+  };
+
   const handlePaid = () => {
-    changeStatusToPaid(invoice?.id);
+    changeStatusToPaid(invoice?.id as string);
   };
 
   return (
@@ -38,12 +45,13 @@ const StatusBar = ({ invoice }: StatusBarProps) => {
         />
       </div>
       <div className="button-container">
-        <Button title="Edit" $variant="edit" />
+        <Button title="Edit" $variant="edit" onClick={handleToggleModal} />
         <Button title="Delete" $variant="remove" onClick={handleDelete} />
         {invoice?.status !== "paid" && (
           <Button title="Mark as Paid" $variant="paid" onClick={handlePaid} />
         )}
       </div>
+      <EditInvoiceModal invoice={invoice as InvoiceType} />
     </StatusBarStyled>
   );
 };
@@ -75,6 +83,5 @@ const StatusBarStyled = styled.div<StatusBarStyle>`
   .button-container {
     display: flex;
     gap: 8px;
-
   }
 `;

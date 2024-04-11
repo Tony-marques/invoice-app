@@ -9,10 +9,12 @@ type InvoiceContextProviderProps = {
 type InvoiceContextType = {
   invoices: InvoiceType[];
   addInvoice: (newInvoice: InvoiceType) => void;
+  updateInvoice: (formData: InvoiceType, invoice: InvoiceType) => void;
   selectedFilter: string;
   choiceInvoice: (value: string) => void;
   deleteInvoice: (invoice: string) => void;
   changeStatusToPaid: (invoice: string) => void;
+  saveAsDraft: (invoiceId: InvoiceType) => void;
 };
 
 const InvoiceContext = createContext<InvoiceContextType | null>(null);
@@ -23,19 +25,23 @@ export const InvoiceContextProvider = ({
   const {
     invoices,
     addInvoice,
+    updateInvoice,
     selectedFilter,
     choiceInvoice,
     deleteInvoice,
     changeStatusToPaid,
+    saveAsDraft
   } = useInvoice();
 
   const invoiceValue = {
     invoices,
     addInvoice,
+    updateInvoice,
     selectedFilter,
     choiceInvoice,
     deleteInvoice,
     changeStatusToPaid,
+    saveAsDraft
   };
 
   return (

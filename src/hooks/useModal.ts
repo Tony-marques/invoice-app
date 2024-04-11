@@ -1,25 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 
 export const useModal = () => {
-  const [showCreateInvoiceForm, setShowCreateInvoiceForm] =
+  const [showModal, setShowModal] =
     useState<boolean>(false);
   const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (showCreateInvoiceForm) {
+    if (showModal) {
       modalRef.current?.show();
     } else {
       modalRef.current?.close();
     }
-  }, [showCreateInvoiceForm]);
+  }, [showModal]);
 
-  const showModal = () => {
-    setShowCreateInvoiceForm(!showCreateInvoiceForm);
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   return {
-    showModal,
-    showCreateInvoiceForm,
+    showModal: toggleModal,
     modalRef,
   };
 };

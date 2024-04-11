@@ -11,6 +11,7 @@ type InputTextType = {
   register?: UseFormRegister<FieldValues>;
   $size?: string;
   $variant?: string;
+  value?: string;
 };
 
 const InputText = ({
@@ -21,13 +22,19 @@ const InputText = ({
   register,
   $size,
   $variant,
+  value,
 }: InputTextType) => {
   const { theme } = useThemeContext();
   return (
     <InputTextStyled $size={$size} $variant={$variant} theme={theme}>
       <label htmlFor="">{label}</label>
       <div className="input-group">
-        <input type="text" readOnly={readOnly} {...register?.(name)} />
+        <input
+          type="text"
+          readOnly={readOnly}
+          {...register?.(name)}
+          defaultValue={value}
+        />
 
         {icon && icon}
       </div>
@@ -74,6 +81,7 @@ const InputTextStyled = styled.div<{
       outline: none;
       width: 100%;
       background-color: ${({ theme }) => (theme === true ? "#1E2139" : "#fff")};
+      color: ${({ theme }) => (theme === true ? "#fff" : "black")};
 
       &:focus {
         border-color: #7c5dfa;

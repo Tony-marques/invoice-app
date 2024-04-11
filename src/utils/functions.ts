@@ -15,6 +15,8 @@ export const getRandomId = () => {
 };
 
 export const formatPrice = (price: number | undefined, digits: number) => {
+    // console.log(typeof price);
+    
     return price?.toFixed(digits);
 };
 
